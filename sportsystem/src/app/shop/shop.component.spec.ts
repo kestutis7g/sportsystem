@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatButtonModule } from '@angular/material/button';
 import { ShopComponent } from './shop.component';
 
 describe('ShopComponent', () => {
@@ -8,9 +8,9 @@ describe('ShopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ShopComponent ]
+      declarations: [ShopComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -7,12 +7,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './login/login.component';
 import { ShopComponent } from './shop/shop.component';
 import { RegisterComponent } from './register/register.component';
+import { CartComponent } from './cart/cart.component';
+import { PaymentComponent } from './payment/payment.component';
 
 // angular material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { MatInputModule } from '@angular/material/input';
     LoginComponent,
     ShopComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    CartComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,8 @@ import { MatInputModule } from '@angular/material/input';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
