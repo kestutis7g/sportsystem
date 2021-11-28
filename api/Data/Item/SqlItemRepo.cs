@@ -38,5 +38,10 @@ namespace SportSystemAPI.Data.Item
         {
             _context.Items.Add(itemModel);
         }
+
+        public async Task UpdateItemAsync(ItemModel itemModel)
+        {
+            //nothing to see here
+        }
     }
 }

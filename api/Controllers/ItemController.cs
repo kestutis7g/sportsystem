@@ -54,5 +54,16 @@ namespace SportSystemAPI.Controllers
 
             return NoContent();
         }
+
+        // PUT api/item
+        [HttpPut]
+        public async Task<ActionResult> UpdateItemAsync([FromBody] ItemModel itemModel)
+        {
+            await _repository.UpdateItemAsync(itemModel);
+
+            _repository.SaveChanges();
+
+            return NoContent();
+        }
     }
 }

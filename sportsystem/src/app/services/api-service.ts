@@ -8,6 +8,7 @@ import { IParkingHistoryFilters } from 'src/model/Parking/History/IParkingHistor
 import { IParkingHistory } from 'src/model/Parking/History/IParkingHistory';
 import { IParkingHistoryFilterOptions } from 'src/model/Parking/History/IParkingHistoryFilterOptions';
 import { ISchedule } from 'src/model/Parking/Settings/ISchedule';
+import { IItem } from 'src/model/IItem';
 
 @Injectable({
   providedIn: 'root'
@@ -16,34 +17,34 @@ export class ApiService {
 
   readonly APIUrl = environment.APIUrl;
 
-  constructor( private http: HttpClient ) { }
+  constructor(private http: HttpClient) { }
 
-  getParkingList(skip: number, pageSize: number){
-    let params = new HttpParams()
-      .set("skip", skip)
-      .set("pageSize", pageSize);
-
-    return this.http.get<IParking>(this.APIUrl + 'parking', { params: params });
+  getItemList(): Observable<IItem[]> {
+    return this.http.get<IItem[]>(this.APIUrl + 'Item');
   }
 
-  uploadParkingData(parkingList: IParkingItem[]){
+  getParkingList(skip: number, pageSize: number) {
+    return this.http.get<IParking>(this.APIUrl + 'parking');
+  }
+
+  uploadParkingData(parkingList: IParkingItem[]) {
     return this.http.post(this.APIUrl + 'parking', parkingList);
   }
 
-  resetParkingData(){
+  resetParkingData() {
     return this.http.delete(this.APIUrl + 'parking');
   }
 
-  getParkingHistory(skip: number, pageSize: number, filters: IParkingHistoryFilters){
+  getParkingHistory(skip: number, pageSize: number, filters: IParkingHistoryFilters) {
     let params = new HttpParams()
       .set("skip", skip)
       .set("pageSize", pageSize)
-      
-    if (filters.condition != "All"){
+
+    if (filters.condition != "All") {
       params = params.append("condition", filters.condition);
     }
 
-    if (filters.tableName.length > 0){
+    if (filters.tableName.length > 0) {
       filters.tableName.forEach(item => {
         params = params.append("tableName", item);
       });
@@ -60,11 +61,11 @@ export class ApiService {
     return this.http.get<IParkingHistory>(this.APIUrl + 'parking/history', { params: params });
   }
 
-  clearParkingHistory(){
+  clearParkingHistory() {
     return this.http.delete(this.APIUrl + 'parking/history');
   }
-  
-  getParkingHistoryFilterOptions(){
+
+  getParkingHistoryFilterOptions() {
     return this.http.get<IParkingHistoryFilterOptions>(this.APIUrl + 'parking/history/filter');
   }
 

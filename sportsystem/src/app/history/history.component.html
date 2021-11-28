@@ -1,81 +1,31 @@
 <div class="parking-container mat-elevation-z8">
-    <div>
-        <button mat-stroked-button ng-disabled="isLoadingResults" class="fa-spin fa-spinner" (click)="refreshParkingHistoryList()">Refresh table</button>
-        <button mat-stroked-button ng-disabled="isLoadingResults" color="warn" (click)="clearHistory()">Clear</button>
+  <div>
 
-        <!-- Filters -->
-        <div>
-            <mat-form-field class="search-box">
-                <mat-label>Phone No.</mat-label>
-                <input matInput type="text" [(ngModel)]="historyFilters.phoneNumber">
-                <button *ngIf="historyFilters.phoneNumber" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="historyFilters.phoneNumber=''">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
+    <!-- Filters -->
 
-            <mat-form-field  class="dropdown-box" style="justify-items: end;">
-                <mat-label>Table</mat-label>
-                <mat-select [(value)]="historyFilters.tableName" (selectionChange)="filterChange()" multiple>
-                    <mat-option *ngFor="let filter of historyfilterOptionsList?.tableName!" [value]="filter">
-                        {{filter}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+    <!-- /Filters -->
+  </div>
+  <div class="parking-table-container">
 
-            <mat-form-field class="search-box">
-                <mat-label>Comment</mat-label>
-                <input matInput type="text" [(ngModel)]="historyFilters.comment">
-                <button *ngIf="historyFilters.comment" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="historyFilters.comment=''">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-form-field>
 
-            <mat-form-field  class="dropdown-box" style="justify-items: end;">
-                <mat-label>Condition</mat-label>
-                <mat-select [(value)]="historyFilters.condition" (selectionChange)="filterChange()">
-                    <mat-option value="All">All</mat-option>
-                    <mat-option *ngFor="let filter of historyfilterOptionsList?.condition!" [value]="filter">
-                        {{filter}}
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <!-- /Filters -->
-    </div>
-    <div class="parking-table-container">
-        <div *ngIf="isLoadingResults" 
-            style="display: flex; justify-content: center; align-items: center; background: white;">
-            <mat-progress-spinner color="primary" mode="indeterminate"></mat-progress-spinner>
-        </div>
+    <table mat-table [dataSource]="itemList!" class="parking-table">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>desc</th>
+        <td mat-cell *matCellDef="let row">{{row.description}}</td>
+      </ng-container>
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>price</th>
+        <td mat-cell *matCellDef="let row">{{row.price}}</td>
+      </ng-container>
 
-        <table *ngIf="!isLoadingResults" mat-table [dataSource]="ParkingHistoryList!" class="parking-table">
-            <ng-container matColumnDef="phone">
-                <th mat-header-cell *matHeaderCellDef>Phone No.</th>
-                <td mat-cell *matCellDef="let row">{{row.phone}}</td>
-            </ng-container>
-            <ng-container matColumnDef="table">
-                <th mat-header-cell *matHeaderCellDef>Table Name</th>
-                <td mat-cell *matCellDef="let row">{{row.tableName}}</td>
-            </ng-container>
-            <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef>Date</th>
-                <td mat-cell *matCellDef="let row">{{row.date}}</td>
-            </ng-container>
-            <ng-container matColumnDef="comment">
-                <th mat-header-cell *matHeaderCellDef>Comment</th>
-                <td mat-cell *matCellDef="let row">{{row.comment}}</td>
-            </ng-container>
-            <ng-container matColumnDef="condition">
-                <th mat-header-cell *matHeaderCellDef>Condition</th>
-                <td mat-cell *matCellDef="let row" [ngClass]="row.condition == 'Success' ? 'success' : 'failure'">{{row.condition}}</td>
-            </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    </div>
-    <mat-paginator [length]="pagination.totalRowCount" [pageSizeOptions]="pagination.pageSizeOptions" [pageSize]="pagination.pageSize"
-        (page)="paginatorEvent($event)" [pageIndex]="pageNumber" showFirstLastButtons></mat-paginator>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
 </div>

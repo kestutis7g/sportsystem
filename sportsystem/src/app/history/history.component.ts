@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api-service';
+import { IItem } from 'src/model/IItem';
 import { PaginationModel } from 'src/model/PaginationModel';
 import { IParkingHistory } from 'src/model/Parking/History/IParkingHistory';
 import { IParkingHistoryFilterOptions } from 'src/model/Parking/History/IParkingHistoryFilterOptions';
@@ -17,7 +18,7 @@ export class HistoryComponent implements OnInit {
   ParkingHistory?: IParkingHistory;
   ParkingHistoryList?: IParkingHistoryItem[];
 
-  displayedColumns = ['phone', 'table', 'date', 'comment', 'condition']
+  displayedColumns = ['name', 'price', 'description']
   isLoadingResults = true;
 
   pagination: PaginationModel = new PaginationModel();
@@ -32,68 +33,28 @@ export class HistoryComponent implements OnInit {
       comment: ""
     }
 
+  itemList?: IItem[];
+
+
 
   constructor(private service: ApiService) { }
 
   ngOnInit(): void {
-    this.service.getParkingHistoryFilterOptions()
+    this.service.getItemList()
       .subscribe(
         data => {
-          this.historyfilterOptionsList = data;
+          this.itemList = data;
+          console.log(this.itemList);
         },
         error => {
           console.log(error);
         }
       );
-    this.refreshParkingHistoryList();
+
   }
 
-  paginatorEvent(e: any) {
-    this.pagination.pageSize = e.pageSize;
-    
-    this.pagination.skip = e.pageIndex * this.pagination.pageSize;
-    this.refreshParkingHistoryList();
-  }
 
-  filterChange() {
-    this.refreshParkingHistoryList();
-  }
 
-  refreshParkingHistoryList(){
-    this.refreshParkingHistory(this.pagination.skip, this.pagination.pageSize, this.historyFilters);
-  }
-  
-  refreshParkingHistory(skip: number, pageSize: number, historyFilters: IParkingHistoryFilters){
-    this.isLoadingResults = true;
-    this.service.getParkingHistory(skip, pageSize, historyFilters)
-      .subscribe(
-        data => {
-          this.isLoadingResults = false;
-          this.ParkingHistory = data;
 
-          this.ParkingHistoryList = this.ParkingHistory?.parkingHistoryList;
-          this.pagination.totalRowCount = this.ParkingHistory?.totalRowCount;
-        },
-        error => {
-          console.log(error);
-        }
-      );
-  }
-  
-  clearHistory(){
-    if (confirm("Are you sure you want to clear history?")){
-      this.isLoadingResults = true;
-      this.service.clearParkingHistory()
-      .subscribe(
-        data => {
-          this.isLoadingResults = false;
-          this.refreshParkingHistoryList();
-        },
-        error => {
-          console.log(error);
-        }
-      );
-    }
-  }
-      
+
 }
