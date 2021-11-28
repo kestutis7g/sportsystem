@@ -34,12 +34,22 @@ import { WorkoutDetailsComponent } from './Pages/Dainius/workout-details/workout
 import { WorkoutRegisterComponent } from './Pages/Dainius/workout-register/workout-register.component';
 import { WorkoutCalendarComponent } from './Pages/Dainius/workout-calendar/workout-calendar.component';
 
+import { HistoryComponent } from './history/history.component'
+
 // angular material
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { HomeComponent } from './Pages/General/home/home.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { HttpClientModule } from '@angular/common/http';
+
+import { MatTableModule } from '@angular/material/table'
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -65,7 +75,8 @@ import { MatButtonModule } from '@angular/material/button';
     WorkoutComponent,
     WorkoutDetailsComponent,
     WorkoutRegisterComponent,
-    WorkoutCalendarComponent
+    WorkoutCalendarComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +85,15 @@ import { MatButtonModule } from '@angular/material/button';
     MatToolbarModule,
     MatIconModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule,
+
+    MatTableModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    FormsModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

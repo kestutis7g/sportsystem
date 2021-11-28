@@ -31,6 +31,8 @@ import { WorkoutDetailsComponent } from './Pages/Dainius/workout-details/workout
 import { WorkoutRegisterComponent } from './Pages/Dainius/workout-register/workout-register.component';
 import { WorkoutCalendarComponent } from './Pages/Dainius/workout-calendar/workout-calendar.component';
 
+import { HistoryComponent } from './history/history.component';
+
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "home", component: HomeComponent },
@@ -55,6 +57,7 @@ const routes: Routes = [
   { path: "workout-details", component: WorkoutDetailsComponent },
   { path: "workout-register", component: WorkoutRegisterComponent },
   { path: "workout-calendar", component: WorkoutCalendarComponent },
+  { path: "history", component: HistoryComponent },
 ];
 
 @NgModule({
