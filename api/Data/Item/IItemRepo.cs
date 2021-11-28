@@ -12,5 +12,7 @@ namespace SportSystemAPI.Data.Item
         Task<IEnumerable<ItemModel>> GetItemListAsync();
         Task<ItemModel> GetItemByIdAsync(int id);
         Task CreateItemAsync(ItemModel itemModel);
+        Task UpdateItemAsync(ItemModel itemModel);
+
     }
 }
