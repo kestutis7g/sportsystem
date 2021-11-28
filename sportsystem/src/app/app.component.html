@@ -3,21 +3,19 @@
     <button mat-icon-button aria-label="Example icon-button with menu icon">
       <mat-icon>menu</mat-icon>
     </button>
-    <span [style.cursor]="'pointer'" routerLink="/home">Sport zal </span>
+    <span class="menu-padding" [style.cursor]="'pointer'" routerLink="/home">Pradinis puslapis</span>
 
-    <span class="toolbar-spacer"></span>
-    <span class="toolbar-spacer" [style.cursor]="'pointer'" routerLink="/shop">Shop</span>
+    <span class="toolbar-spacer menu-padding"></span>
+    <span class="toolbar-spacer menu-padding" [style.cursor]="'pointer'" routerLink="/shop">Parduotuvė</span>
+    <span class="toolbar-spacer menu-padding" [style.cursor]="'pointer'" routerLink="/subscription">Prenumeratos</span>
+    <span class="toolbar-spacer menu-padding" [style.cursor]="'pointer'" routerLink="/workout">Treniruotės</span>
 
 
     <span class="toolbar-endspacer"></span>
-    <span class="toolbar-spacer" [style.cursor]="'pointer'" routerLink="/login">Login</span>
-    <span class="toolbar-spacer" [style.cursor]="'pointer'" routerLink="/register">Register</span>
-
+    <span class="toolbar-spacer menu-padding" [style.cursor]="'pointer'" routerLink="/edit-account">Redaguoti
+      paskyrą</span>
+    <span class="toolbar-spacer menu-padding" [style.cursor]="'pointer'" routerLink="/login">Prisijungti</span>
 
   </mat-toolbar>
 </p>
-
-
-
-
 <router-outlet></router-outlet>
