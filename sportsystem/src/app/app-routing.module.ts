@@ -42,7 +42,7 @@ const routes: Routes = [
   { path: "cart", component: CartComponent },
   { path: "payment", component: PaymentComponent },
   { path: "add-item", component: AddItemComponent },
-  { path: "item", component: ItemComponent },
+  { path: "item/:id", component: ItemComponent },
   { path: "edit-account", component: EditAccountComponent },
   { path: "balance", component: BalanceComponent },
   { path: "gym", component: GymComponent },

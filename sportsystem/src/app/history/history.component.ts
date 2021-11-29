@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { ApiService } from 'src/app/services/api-service';
 import { IItem } from 'src/model/IItem';
 import { PaginationModel } from 'src/model/PaginationModel';
@@ -18,7 +19,8 @@ export class HistoryComponent implements OnInit {
   ParkingHistory?: IParkingHistory;
   ParkingHistoryList?: IParkingHistoryItem[];
 
-  displayedColumns = ['name', 'price', 'description']
+  displayedColumns = ['name']
+  //displayedColumns = ['name', 'price', 'description', 'quantity', 'discount', 'type']
   isLoadingResults = true;
 
   pagination: PaginationModel = new PaginationModel();
@@ -37,7 +39,8 @@ export class HistoryComponent implements OnInit {
 
 
 
-  constructor(private service: ApiService) { }
+  constructor(private service: ApiService,
+    private route: Router) { }
 
   ngOnInit(): void {
     this.service.getItemList()
@@ -53,6 +56,10 @@ export class HistoryComponent implements OnInit {
 
   }
 
+  pushButton(id: number) {
+    console.log(id);
+    this.route.navigate(["item/" + id]);
+  }
 
 
 

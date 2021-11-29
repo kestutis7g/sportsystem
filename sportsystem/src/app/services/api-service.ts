@@ -23,6 +23,10 @@ export class ApiService {
     return this.http.get<IItem[]>(this.APIUrl + 'Item');
   }
 
+  getItemById(id: number) {
+    return this.http.get<IItem>(this.APIUrl + 'Item/' + id);
+  }
+
   getParkingList(skip: number, pageSize: number) {
     return this.http.get<IParking>(this.APIUrl + 'parking');
   }
