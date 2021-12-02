@@ -1,14 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { IParkingItem } from 'src/model/Parking/PendingChanges/IParkingItem';
 import { environment } from 'src/environments/environment';
-import { IParking } from 'src/model/Parking/PendingChanges/IParking';
 import { Observable } from 'rxjs';
-import { IParkingHistoryFilters } from 'src/model/Parking/History/IParkingHistoryFilters';
-import { IParkingHistory } from 'src/model/Parking/History/IParkingHistory';
-import { IParkingHistoryFilterOptions } from 'src/model/Parking/History/IParkingHistoryFilterOptions';
-import { ISchedule } from 'src/model/Parking/Settings/ISchedule';
 import { IItem } from 'src/model/IItem';
+import { ICart } from 'src/model/ICart';
+import { IUser } from 'src/model/IUser';
 
 @Injectable({
   providedIn: 'root'
@@ -23,61 +19,44 @@ export class ApiService {
     return this.http.get<IItem[]>(this.APIUrl + 'Item');
   }
 
-  getItemById(id: number) {
+  getItemById(id: number): Observable<IItem> {
     return this.http.get<IItem>(this.APIUrl + 'Item/' + id);
   }
 
-  getParkingList(skip: number, pageSize: number) {
-    return this.http.get<IParking>(this.APIUrl + 'parking');
+  getItemListByUserId(userId: number): Observable<IItem[]> {
+    return this.http.get<IItem[]>(this.APIUrl + 'Item/list/' + userId);
   }
 
-  uploadParkingData(parkingList: IParkingItem[]) {
-    return this.http.post(this.APIUrl + 'parking', parkingList);
+  getCartListById(id: number): Observable<ICart[]> {
+    return this.http.get<ICart[]>(this.APIUrl + 'Cart/' + id);
   }
 
-  resetParkingData() {
-    return this.http.delete(this.APIUrl + 'parking');
+  addItemToCart(cartItem: ICart) {
+    return this.http.post(this.APIUrl + 'Cart', cartItem);
   }
 
-  getParkingHistory(skip: number, pageSize: number, filters: IParkingHistoryFilters) {
-    let params = new HttpParams()
-      .set("skip", skip)
-      .set("pageSize", pageSize)
-
-    if (filters.condition != "All") {
-      params = params.append("condition", filters.condition);
-    }
-
-    if (filters.tableName.length > 0) {
-      filters.tableName.forEach(item => {
-        params = params.append("tableName", item);
-      });
-    }
-
-    if (typeof filters.phoneNumber != 'undefined' && filters.phoneNumber) {
-      params = params.append("phoneNumber", filters.phoneNumber);
-    }
-
-    if (typeof filters.comment != 'undefined' && filters.comment) {
-      params = params.append("comment", filters.comment);
-    }
-
-    return this.http.get<IParkingHistory>(this.APIUrl + 'parking/history', { params: params });
+  addUser(user: IUser) {
+    return this.http.post(this.APIUrl + 'User', user);
   }
 
-  clearParkingHistory() {
-    return this.http.delete(this.APIUrl + 'parking/history');
+  getUserLogin(login: string) {
+    return this.http.get<IUser>(this.APIUrl + 'User/' + login);
   }
 
-  getParkingHistoryFilterOptions() {
-    return this.http.get<IParkingHistoryFilterOptions>(this.APIUrl + 'parking/history/filter');
+  deleteItemFromCart(id: number) {
+    return this.http.delete(this.APIUrl + 'Cart/' + id);
   }
 
-  getParkingSchedule() {
-    return this.http.get<ISchedule>(this.APIUrl + 'parking/schedule/' + 1)
+  addItem(item: IItem) {
+    return this.http.post(this.APIUrl + 'Item', item);
   }
 
-  updateParkingSchedule(schedule: ISchedule) {
-    return this.http.put(this.APIUrl + 'parking/schedule/' + 1, schedule)
+  updateItem(item: IItem) {
+    return this.http.put(this.APIUrl + 'Item', item);
   }
+
+  deleteItemFromList(id: number) {
+    return this.http.delete(this.APIUrl + 'Item/' + id);
+  }
+
 }

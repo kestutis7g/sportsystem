@@ -1,45 +1,55 @@
 <head>
-    <link rel="stylesheet" href="./login.component.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        h1 {
-            text-align: center;
-        }
+  <link rel="stylesheet" href="./login.component.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-        p {
-            text-align: center;
-        }
-
-        div {
-            text-align: center;
-        }
-    </style>
 </head>
 
 <h1>
-    Prisijungimas
+  Prisijungimas
 </h1>
 <div class="register-form">
-    <form action="/action_page.php" class="form">
-        <p>
-            <mat-form-field appearance="legacy">
-                <mat-label>Vartotojo vardas</mat-label>
-                <input matInput placeholder=" ">
-            </mat-form-field>
-        </p>
 
-        <p>
-            <mat-form-field appearance="legacy">
-                <mat-label>Slaptažodis</mat-label>
-                <input matInput placeholder=" ">
-            </mat-form-field>
-        </p>
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Vartotojo vardas</mat-label>
+      <input matInput placeholder=" " [(ngModel)]="name">
+    </mat-form-field>
+  </p>
 
-        <input type="submit" value="Prisijungti" class="btn btn-dark">
-        <p> </p>
-        <input routerLink="/register" type="submit" value="Registruotis" class="btn btn-dark">
+  <p>
+    <mat-form-field appearance="legacy">
+      <mat-label>Slaptažodis</mat-label>
+      <div style="width: 100%; display: table;">
+        <div style="display: table-row">
+          <div style="width: 600px; display: table-cell;">
+
+            <input class="left" type={{visibility}} matInput placeholder=" " [(ngModel)]="pass" id="myInput">
+
+          </div>
+
+          <div style="display: table-cell;">
+            <div style="width: 70%">
+              <button mat-icon-button color="black" text-align: right (click)="myFunction()"
+                aria-label="Example icon button with a heart icon">
+                <mat-icon>{{visibilityIcon}}</mat-icon>
+              </button>
+            </div>
 
 
-    </form>
+          </div>
+        </div>
+      </div>
+
+
+    </mat-form-field>
+  </p>
+
+  <button type="submit" class="btn btn-dark" (click)="loginUser()">Prisijungti</button>
+  <p> </p>
+  <button routerLink="/register" type="submit" class="btn btn-dark">Registruotis</button>
+
+  <div>
+    {{prisijungta}}
+  </div>
 </div>

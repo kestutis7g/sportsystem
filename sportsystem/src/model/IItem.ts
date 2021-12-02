@@ -1,9 +1,10 @@
-export interface IItem {
-  id: number,
-  name: string,
-  price: number,
-  description: string,
-  quantity: number,
-  discount: number,
-  type: string
+export class IItem {
+  id = 0;
+  name = "";
+  picture = "";
+  price = null;
+  description = "";
+  quantity = null;
+  discount = null;
+  type = "";
 }

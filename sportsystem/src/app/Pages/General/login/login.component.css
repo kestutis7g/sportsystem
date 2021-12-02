@@ -1,11 +1,11 @@
 .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
-  
+
 .example-full-width {
-    width: 100%;
+  width: 100%;
 }
 
 .register-form {
@@ -20,11 +20,11 @@
   text-align: center;
 }
 
-p:hover{
-  font-size: 15px;
-  transition-duration: 0.5s;
+
+h1 {
+  text-align: center;
 }
 
-p{
-  transition-duration: 0.5s;
+p {
+  text-align: center;
 }

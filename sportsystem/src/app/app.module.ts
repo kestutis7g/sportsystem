@@ -19,6 +19,7 @@ import { CartComponent } from './Pages/Kestutis/cart/cart.component';
 import { PaymentComponent } from './Pages/Kestutis/payment/payment.component';
 import { AddItemComponent } from './Pages/Kestutis/add-item/add-item.component';
 import { ItemComponent } from './Pages/Kestutis/item/item.component';
+import { EditItemComponent } from './Pages/Kestutis/edit-item/edit-item.component';
 
 //Prenumeratos
 import { SubscriptionComponent } from './Pages/Robertas/subscription/subscription.component';
@@ -52,6 +53,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,7 +79,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     WorkoutDetailsComponent,
     WorkoutRegisterComponent,
     WorkoutCalendarComponent,
-    HistoryComponent
+    HistoryComponent,
+    EditItemComponent
   ],
   imports: [
     BrowserModule,

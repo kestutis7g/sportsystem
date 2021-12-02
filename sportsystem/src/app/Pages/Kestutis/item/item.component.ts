@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api-service';
+import { ICart } from 'src/model/ICart';
 import { IItem } from 'src/model/IItem';
 
 @Component({
@@ -11,16 +12,17 @@ import { IItem } from 'src/model/IItem';
 export class ItemComponent implements OnInit {
 
   item: IItem | undefined
-
+  quantity: number = 1
+  canEdit: boolean = false;
   constructor(
     private service: ApiService,
-    private route: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private route: Router
   ) { }
 
   ngOnInit() {
-    let route = this.route.params.subscribe(params => {
-      console.log(params) //log the entire params object
-      console.log(params['id']) //log the value of id
+    let route = this.activatedRoute.params.subscribe(params => {
+
       this.service.getItemById(params['id']).subscribe(
         data => {
           this.item = data;
@@ -31,6 +33,39 @@ export class ItemComponent implements OnInit {
         }
       )
     });
+
+    if (localStorage.getItem('type') == "admin" || localStorage.getItem('type') == "seller") {
+      this.canEdit = true;
+    }
+    else {
+      this.canEdit = false;
+    }
+  }
+
+  addToCart(id: number) {
+    if (this.quantity > 0) {
+      console.log(id);
+      let cartItem: ICart = {
+        id: 0,
+        itemId: id,
+        userId: parseInt(localStorage.getItem('userId') || "0"),
+        quantity: this.quantity
+      }
+
+      this.service.addItemToCart(cartItem).subscribe(
+        data => {
+
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
+  }
+
+  pushButton(id: number) {
+    console.log(id);
+    this.route.navigate(["edit-item/" + id]);
   }
 
 }

@@ -16,6 +16,7 @@ import { CartComponent } from './Pages/Kestutis/cart/cart.component';
 import { PaymentComponent } from './Pages/Kestutis/payment/payment.component';
 import { AddItemComponent } from './Pages/Kestutis/add-item/add-item.component';
 import { ItemComponent } from './Pages/Kestutis/item/item.component';
+import { EditItemComponent } from './Pages/Kestutis/edit-item/edit-item.component';
 
 //Prenumeratos
 import { SubscriptionComponent } from './Pages/Robertas/subscription/subscription.component';
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "shop", component: ShopComponent },
   { path: "cart", component: CartComponent },
+  { path: "edit-item", component: EditItemComponent },
   { path: "payment", component: PaymentComponent },
   { path: "add-item", component: AddItemComponent },
   { path: "item/:id", component: ItemComponent },
