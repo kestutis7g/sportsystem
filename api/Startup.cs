@@ -7,6 +7,8 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using SportSystemAPI.Context;
 using SportSystemAPI.Data.Item;
+using SportSystemAPI.Data.User;
+using SportSystemAPI.Data.Cart;
 
 namespace SportSystemAPI
 {
@@ -33,6 +35,8 @@ namespace SportSystemAPI
                 (Configuration.GetConnectionString("SportSystem")));
 
             services.AddScoped<IItemRepo, SqlItemRepo>();
+            services.AddScoped<ICartRepo, SqlCartRepo>();
+            services.AddScoped<IUserRepo, SqlUserRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

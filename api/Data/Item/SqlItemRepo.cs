@@ -10,11 +10,11 @@ namespace SportSystemAPI.Data.Item
 {
     public class SqlItemRepo : IItemRepo
     {
-        public SqlItemRepo(ShopContext context)
+        public SqlItemRepo(SportSystemContext context)
         {
             _context = context;
         }
-        private readonly ShopContext _context;
+        private readonly SportSystemContext _context;
 
         public Task SaveChangesAsync()
         {

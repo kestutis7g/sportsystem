@@ -10,11 +10,11 @@ namespace SportSystemAPI.Data.User
 {
     public class SqlUserRepo : IUserRepo
     {
-        public SqlUserRepo(ShopContext context)
+        public SqlUserRepo(SportSystemContext context)
         {
             _context = context;
         }
-        private readonly ShopContext _context;
+        private readonly SportSystemContext _context;
 
         public Task SaveChangesAsync()
         {

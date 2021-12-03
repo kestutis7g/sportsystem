@@ -10,11 +10,11 @@ namespace SportSystemAPI.Data.Cart
 {
     public class SqlCartRepo : ICartRepo
     {
-        public SqlCartRepo(ShopContext context)
+        public SqlCartRepo(SportSystemContext context)
         {
             _context = context;
         }
-        private readonly ShopContext _context;
+        private readonly SportSystemContext _context;
 
         public Task SaveChangesAsync()
         {

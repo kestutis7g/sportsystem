@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "shop", component: ShopComponent },
   { path: "cart", component: CartComponent },
-  { path: "edit-item", component: EditItemComponent },
+  { path: "edit-item/:id", component: EditItemComponent },
   { path: "payment", component: PaymentComponent },
   { path: "add-item", component: AddItemComponent },
   { path: "item/:id", component: ItemComponent },

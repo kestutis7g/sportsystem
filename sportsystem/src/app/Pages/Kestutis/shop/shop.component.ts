@@ -18,7 +18,8 @@ export class ShopComponent implements OnInit {
   itemList?: IItem[];
 
   constructor(private service: ApiService,
-    private route: Router) { }
+    private route: Router
+  ) { }
 
   ngOnInit(): void {
     this.service.getItemList()

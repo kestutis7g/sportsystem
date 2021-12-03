@@ -8,76 +8,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-  <style>
-    h1 {
-      text-align: center;
-    }
-
-    p {
-      text-align: center;
-    }
-
-    div {
-      text-align: center;
-    }
-
-    #melyna {
-      color: #0000ff;
-      font-weight: bold;
-    }
-
-    img {
-      -webkit-filter: grayscale(100%);
-      /* Safari 6.0 - 9.0 */
-      filter: grayscale(100%);
-
-      float: left;
-      width: 500px;
-      height: 500px;
-      object-fit: cover;
-    }
-
-    img:hover {
-      -webkit-filter: grayscale(0%);
-      /* Safari 6.0 - 9.0 */
-      filter: grayscale(0%);
-
-      float: left;
-      width: 500px;
-      height: 500px;
-      object-fit: cover;
-    }
-
-    span.a {
-      display: inline;
-      /* the default for span */
-      width: 100px;
-      height: 100px;
-      padding: 5px;
-      border: 1px solid blue;
-      background-color: yellow;
-    }
-
-    span.b {
-      display: inline-block;
-      width: 100px;
-      height: 100px;
-      padding: 5px;
-      border: 1px solid blue;
-      background-color: yellow;
-    }
-
-    span.c {
-      display: block;
-      width: 100px;
-      height: 100px;
-      padding: 5px;
-      border: 1px solid blue;
-      background-color: yellow;
-    }
-  </style>
-
-
 </head>
 
 <body>
@@ -91,20 +21,55 @@
     <div class="row mb-3">
       <div *ngFor="let item of itemList!" class="col-xs-2 themed-grid-col" (click)="pushButton(item.id)">
 
-        {{item.name}} {{item.price}}
+        <img routerLink="/item" src={{item.picture}} alt={{item.name}} style="width:100%">
+        <div class="name">
+          {{item.name}}
+        </div>
+        ${{item.price}}
 
       </div>
     </div>
   </div>
 
+  <div class="parking-container mat-elevation-z8">
+
+    <div class="parking-table-container">
+
+      <table mat-table [dataSource]="itemList!" class="parking-table">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let row">{{row.name}}</td>
+          <span class="b">Aliquam</span> <span class="b">venenatis</span>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef>desc</th>
+          <td mat-cell *matCellDef="let row">{{row.description}}</td>
+        </ng-container>
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef>price</th>
+          <td mat-cell *matCellDef="let row">{{row.price}}</td>
+        </ng-container>
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let row">{{row.quantity}}</td>
+        </ng-container>
+        <ng-container matColumnDef="discount">
+          <th mat-header-cell *matHeaderCellDef>Discount</th>
+          <td mat-cell *matCellDef="let row">{{row.discount}}</td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef>Type</th>
+          <td mat-cell *matCellDef="let row">{{row.type}}</td>
+        </ng-container>
 
 
 
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
 
-
-
-
-
+  </div>
 
 
 </body>
