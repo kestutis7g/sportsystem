@@ -59,4 +59,12 @@ export class ApiService {
     return this.http.delete(this.APIUrl + 'Item/' + id);
   }
 
+  getUserById(id: number): Observable<IUser> {
+    return this.http.get<IUser>(this.APIUrl + 'User/id/' + id);
+  }
+
+  updateUser(user: IUser) {
+    return this.http.put(this.APIUrl + 'User', user);
+  }
+
 }

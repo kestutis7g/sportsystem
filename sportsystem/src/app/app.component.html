@@ -9,7 +9,7 @@
     <span class="toolbar-spacer menu-padding pointer" routerLink="/shop">Parduotuvė</span>
 
     <span class="toolbar-endspacer"></span>
-    <span class="toolbar-spacer menu-padding">{{username}}</span>
+    <span class="toolbar-spacer menu-padding pointer" *ngIf="signout" (click)="OpenUserEdit()">{{username}}</span>
     <span class="toolbar-spacer menu-padding pointer" *ngIf="addItem" routerLink="/add-item">
       <mat-icon>library_add</mat-icon>
     </span>
