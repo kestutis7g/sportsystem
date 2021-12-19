@@ -23,6 +23,10 @@ export class ApiService {
     return this.http.get<IItem>(this.APIUrl + 'Item/' + id);
   }
 
+  getItemByName(name: string): Observable<IItem> {
+    return this.http.get<IItem>(this.APIUrl + 'Item/name/' + name);
+  }
+
   getItemListByUserId(userId: number): Observable<IItem[]> {
     return this.http.get<IItem[]>(this.APIUrl + 'Item/list/' + userId);
   }

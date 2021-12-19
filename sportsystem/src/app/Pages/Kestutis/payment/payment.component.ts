@@ -72,20 +72,17 @@ export class PaymentComponent implements OnInit {
 
     this.itemList.forEach(item => {
       let route = this.activatedRoute.params.subscribe(params => {
-
-        this.service.getItemById(item.id).subscribe(
+        this.service.getItemByName(item.name).subscribe(
           data => {
             this.changingItem = data;
-            console.log(this.changingItem);
+            this.changingItem.quantity = this.changingItem.quantity! - item.quantity!;
+            this.service.updateItem(this.changingItem).subscribe();
           },
           error => {
             console.log(error);
           }
         )
-        let temp: number = 0;
-        temp = this.changingItem.quantity! - item.quantity!;
-        //this.changingItem.quantity = temp!;
-        //this.service.updateItem(this.changingItem).subscribe();
+
       });
 
       this.service.deleteItemFromCart(item.id).subscribe(() => this.route.navigate(["/home"]));
