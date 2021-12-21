@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IItem } from 'src/model/IItem';
 import { ICart } from 'src/model/ICart';
 import { IUser } from 'src/model/IUser';
+import { ISub } from 'src/model/ISub';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,22 @@ export class ApiService {
 
   updateUser(user: IUser) {
     return this.http.put(this.APIUrl + 'User', user);
+  }
+
+  getSubByUserId(userId: number): Observable<ISub> {
+    return this.http.get<ISub>(this.APIUrl + 'Sub/' + userId);
+  }
+
+  addSub(sub: ISub) {
+    return this.http.post(this.APIUrl + 'Sub', sub);
+  }
+
+  updateSub(sub: ISub) {
+    return this.http.put(this.APIUrl + 'Sub', sub);
+  }
+
+  deleteSub(userId: number) {
+    return this.http.delete(this.APIUrl + 'Sub/' + userId);
   }
 
 }

@@ -13,5 +13,6 @@ namespace SportSystemAPI.Context
         public DbSet<ItemModel> Items { get; set; }
         public DbSet<CartModel> Carts { get; set; }
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<SubModel> Subs { get; set; }
     }
 }
